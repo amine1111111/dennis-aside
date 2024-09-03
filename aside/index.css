@@ -1,0 +1,161 @@
+:root {
+  --dark : :#131111 ;
+
+  --violet-bg : #455ce9; 
+  --aside-bg : #1c1d20;
+}
+
+::selection {
+  background: transparent;
+}
+
+*, :before, :after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+}
+
+
+:where(a) {
+  text-decoration: none;
+  color: white;
+}
+
+
+  .aside-btn {
+    right: 5vw;
+    top: 5vh;
+    
+    width: 3rem;
+    aspect-ratio: 1;
+  
+    outline: 0;
+    isolation: isolate;
+    
+    &:is(:hover, :focus, :focus-visible, :active) .floating {
+      translate: 0 -200%;
+      scale: 3;
+    }
+  
+    .floating {
+      inset: 0;
+      background: var(--violet-bg);
+      transition: all 0.8s ease;
+      translate: 0 120%;
+      z-index: -1;
+    }
+  
+    [class*="ln"] {
+      width: 45%;
+      height: 1px;
+      transition: all .5s ease;
+    }
+  }
+
+ 
+
+  .lines-container {
+    &.transform .top-ln {
+      rotate: 45deg;
+    }
+    &.transform .bottom-ln {
+      transform: translateY(-350%) rotate(-45deg);
+    }
+  }
+
+
+
+aside {
+  --aside-left-inset : 55vw; 
+  inset: 0 0 0 var(--aside-left-inset);
+  padding: 4rem;
+  background: var(--aside-bg);
+  translate: 100%;
+  transition: all .6s cubic-bezier(.7, 0, .2, 1);
+  border-radius: 20%;
+  
+  .navigation-span {
+    margin-top: 3vmax;
+  }
+  span {
+    font-size: 0.7rem;
+  } 
+}
+.show-aside {
+  translate: 0%;
+  border-radius: initial;
+}
+
+.menu-list {
+  flex: 1;
+  font-size: clamp(2rem, 5vw + 0.5rem, 2.5rem);
+}
+
+.menu-list li {
+  width: max-content;
+}
+.menu-list li::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 0;
+  translate: -2rem -50%;
+  background: white;
+  border-radius: 50%;
+  
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.menu-list li:hover::before {
+  opacity: 1;
+}
+
+
+.socials {
+  font-size: 0.9rem;
+  
+  li:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    inset: 100% auto auto 50%;
+    background: white;
+    
+    transition: transform 0.5s ease;
+    transform: translateX(-50%) scaleX(0); 
+  }
+  li:hover:before {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+}  
+
+.magnetic {
+  transition: all .5s ease;
+} 
+
+
+
+
+
+
+
+@media (width <= 768px){
+  aside {
+  --aside-left-inset : 0vw; 
+  padding: 2rem;
+  
+  .navigation-span {
+    margin-top: 10vmax;
+  }
+}
+
+  
+}
